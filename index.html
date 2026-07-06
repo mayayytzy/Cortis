@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linktree Profile</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome untuk Icon Sosmed -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Halus saat hover tombol */
+    .link-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .link-card:hover {
+      transform: translateY(-2px);
+    }
+    /* Transisi opacity video agar munculnya mulus */
+    #bgVideo {
+      transition: opacity 0.8s ease-in-out;
+    }
+    /* Transisi overlay hitam agar teks tetap kontras saat video muncul */
+    #videoOverlay {
+      transition: background-color 0.8s ease-in-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-gray-900 via-purple-950 to-black text-gray-100 flex flex-col items-center justify-between p-6 antialiased relative overflow-x-hidden">
+
+  <!-- ================= BACKGROUND VIDEO ELEMENT ================= -->
+  <!-- Efek blur dihapus total agar video terlihat tajam dan jelas -->
+  <video 
+    id="bgVideo" 
+    src="video/bg-video.mp4" 
+    loop 
+    muted 
+    playsinline
+    class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-0 pointer-events-none"
+  ></video>
+
+  <!-- Layer Overlay awal (Hitam 50%) -->
+  <div id="videoOverlay" class="absolute top-0 left-0 w-full h-full bg-black/50 z-0 pointer-events-none"></div>
+
+  <!-- Audio Element (Folder lokal Anda) -->
+  <audio id="myAudio" src="audio/musik.mp3"></audio>
+
+  <!-- Wrapper Utama dengan z-10 agar konten berada di atas video -->
+  <div class="w-full max-w-md flex flex-col items-center justify-between flex-grow z-10">
+    
+    <!-- Tombol Share di Pojok Kanan Atas -->
+    <div class="w-full flex justify-end relative">
+      <button 
+        onclick="handleShare()"
+        class="p-3 bg-gray-800/60 backdrop-blur-md rounded-full border border-gray-700/50 hover:bg-gray-700/60 transition-all duration-300 group focus:outline-none"
+        id="shareBtn"
+      >
+        <i class="fa-solid fa-share-nodes text-sm" id="shareIcon"></i>
+      </button>
+      
+      <!-- Tooltip Notifikasi Sukses Copy -->
+      <span 
+        id="toast" 
+        class="hidden absolute right-0 top-12 bg-green-500 text-xs text-white px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 transition-all duration-300"
+      >
+        Link Copied!
+      </span>
+    </div>
+
+    <!-- Konten Utama Profile -->
+    <main class="w-full flex-grow flex flex-col items-center justify-center text-center mt-4">
+      
+      <!-- Foto Profil dengan Efek Glowing Glow -->
+      <div class="relative group">
+        <div class="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full blur opacity-70 group-hover:opacity-100 transition duration-500"></div>
+        <img 
+          src="https://i.pinimg.com/736x/df/6f/f1/df6ff18dad88a147fafffab7f3616199.jpg" 
+          alt="Profile Avatar" 
+          class="relative w-24 h-24 rounded-full object-cover border-2 border-gray-800"
+        />
+      </div>
+
+      <!-- Nama & Bio -->
+      <h1 class="text-2xl font-bold mt-5 tracking-tight">@Fhrynn</h1>
+      <p class="text-gray-400 text-sm max-w-sm mt-2 font-medium">
+         AK MAH MASIH PEMULA AJARIN DONG PUHH
+      </p>
+
+      <!-- Daftar Link (Linktree Buttons) -->
+      <div class="w-full space-y-4 mt-8 mb-8">
+        
+        <!-- Link 1 -->
+        <a 
+          href="https://web.facebook.com/fachrie.il?locale=id_ID" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="link-card w-full flex items-center justify-between p-4 bg-gray-800/40 backdrop-blur-md border border-gray-700/40 rounded-2xl hover:bg-gray-700/40 hover:border-purple-500/50 shadow-lg group"
+        >
+          <div class="text-gray-400 group-hover:text-blue-500 transition-colors w-5 text-left">
+            <i class="fa-brands fa-facebook text-lg"></i>
+          </div>
+          <span class="font-semibold text-sm tracking-wide">Follow My Facebook</span>
+          <div class="w-5"></div>
+        </a>
+
+        <!-- Link 2 -->
+        <a 
+          href="https://github.com/mayayytzy" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="link-card w-full flex items-center justify-between p-4 bg-gray-800/40 backdrop-blur-md border border-gray-700/40 rounded-2xl hover:bg-gray-700/40 hover:border-purple-500/50 shadow-lg group"
+        >
+          <div class="text-gray-400 group-hover:text-purple-400 transition-colors w-5 text-left">
+            <i class="fa-brands fa-github text-lg"></i>
+          </div>
+          <span class="font-semibold text-sm tracking-wide">Check out my GitHub</span>
+          <div class="w-5"></div>
+        </a>
+
+        <!-- Link 3 -->
+        <a 
+          href="https://www.instagram.com/fajarng12/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="link-card w-full flex items-center justify-between p-4 bg-gray-800/40 backdrop-blur-md border border-gray-700/40 rounded-2xl hover:bg-gray-700/40 hover:border-purple-500/50 shadow-lg group"
+        >
+          <div class="text-gray-400 group-hover:text-purple-400 transition-colors w-5 text-left">
+            <i class="fa-brands fa-instagram text-lg"></i>
+          </div>
+          <span class="font-semibold text-sm tracking-wide">Follow my Instagram</span>
+          <div class="w-5"></div>
+        </a>
+
+      </div>
+
+      <!-- TOMBOL PLAY MUSIC -->
+      <button 
+        onclick="toggleMusic()"
+        id="musicBtn"
+        class="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl font-bold text-sm tracking-wide shadow-lg hover:opacity-90 active:scale-95 transition-all duration-200"
+      >
+        <i id="musicIcon" class="fa-solid fa-play"></i>
+        <span id="musicText">REDRED</span>
+      </button>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-xs text-gray-600 tracking-wider mt-12">
+      &copy; <span id="year"></span> Mayayayy. All Rights Reserved.
+    </footer>
+  </div>
+
+  <!-- JavaScript Logika Music, Video, Share & Tahun Otomatis -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const audio = document.getElementById('myAudio');
+    const video = document.getElementById('bgVideo');
+    const overlay = document.getElementById('videoOverlay');
+    const musicIcon = document.getElementById('musicIcon');
+    const musicText = document.getElementById('musicText');
+
+    function toggleMusic() {
+      if (audio.paused) {
+        if (audio.currentTime < 0 || audio.currentTime >= 162) {
+          audio.currentTime = 0; 
+        }
+        
+        audio.play();
+        video.play();
+        
+        // Membuat video tampil jelas (Opacity naik ke 85%)
+        video.classList.remove('opacity-0');
+        video.classList.add('opacity-85'); 
+        
+        // Mengurangi kepekatan overlay hitam menjadi tipis (20%) agar video di belakangnya terlihat sangat kontras
+        overlay.classList.remove('bg-black/50');
+        overlay.classList.add('bg-black/20');
+
+        musicIcon.className = "fa-solid fa-pause animate-pulse";
+        musicText.textContent = "Playing Cool Part...";
+      } else {
+        audio.pause();
+        video.pause();
+        resetMusicAndVideo();
+      }
+    }
+
+    // Pantau durasi lagu
+    audio.addEventListener('timeupdate', () => {
+      if (audio.currentTime >= 162) {
+        audio.pause();
+        video.pause();
+        audio.currentTime = 0;
+        resetMusicAndVideo();
+      }
+    });
+
+    function resetMusicAndVideo() {
+      musicIcon.className = "fa-solid fa-play";
+      musicText.textContent = "REDRED";
+      
+      // Sembunyikan kembali video
+      video.classList.remove('opacity-85');
+      video.classList.add('opacity-0');
+      
+      // Kembalikan kepekatan overlay hitam awal
+      overlay.classList.remove('bg-black/20');
+      overlay.classList.add('bg-black/50');
+    }
+
+    // Fungsi Share
+    async function handleShare() {
+      const shareData = {
+        title: 'Mayayayy Profile',
+        text: 'Frontend Developer Portfolio & Links',
+        url: window.location.href
+      };
+
+      const shareIcon = document.getElementById('shareIcon');
+      const toast = document.getElementById('toast');
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (error) {
+          console.log("Gagal membagikan:", error);
+        }
+      } else {
+        try {
+          await navigator.clipboard.writeText(shareData.url);
+          shareIcon.className = "fa-solid fa-check text-green-400";
+          toast.classList.remove('hidden');
+          setTimeout(() => { toast.classList.add('opacity-100'); }, 10);
+
+          setTimeout(() => {
+            shareIcon.className = "fa-solid fa-share-nodes text-sm";
+            toast.classList.remove('opacity-100');
+            setTimeout(() => { toast.classList.add('hidden'); }, 300);
+          }, 2000);
+
+        } catch (err) {
+          console.error("Gagal menyalin link:", err);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
